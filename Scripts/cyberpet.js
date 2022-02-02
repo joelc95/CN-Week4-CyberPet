@@ -89,9 +89,13 @@ spawnCatButton.addEventListener("click", () => {
     catTag.appendChild(catHunger);
     catTag.appendChild(catThirst);
     catTag.appendChild(catMood);
+
+    // Randomise which cat color
+    let random3 = 1 + Math.floor(Math.random()*3);
     
     // Set variables that cannot be set in CSS afterwards
-    newCatSprite.setAttribute("src", "../Sprites/cat01Large.png");
+    newCatSprite.setAttribute("src", `../Sprites/cat0${random3}Large.png`);
+    console.log(random3)
     newCatSprite.setAttribute("style", `z-index: ${animalCount}`)
     newCatSprite.setAttribute("id", newCat.name)
     newCatSprite.setAttribute("class", "cat")
@@ -103,7 +107,6 @@ spawnCatButton.addEventListener("click", () => {
 
     //Finally, attach the stats tag to the cat container
     newCatContainer.appendChild(catTag)
-    
 })
 
 
