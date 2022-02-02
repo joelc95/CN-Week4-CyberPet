@@ -1,0 +1,89 @@
+html {
+    height: 100vh;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    border:aqua solid 3px;
+    height: 10vh;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: pink solid 3px;
+    height: 10vh;
+}
+
+.tool-buttons {
+    border: blue solid 3px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: cornflowerblue;
+}
+
+.tool-buttons ul {
+    border:coral solid 3px;
+    display: flex;
+    list-style: none;
+    padding:0;
+}
+
+.tool-buttons li {
+    padding-left: 1rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    padding-right: 1rem;
+    background-color: crimson;
+}
+
+.tool-buttons li:hover {
+    background-color: rgb(146, 11, 38);
+    cursor: pointer;
+}
+
+
+
+.middle {
+    display: flex;
+    justify-content: center;
+    height:70vh;
+    flex-direction: column;
+}
+
+.skybox {
+    display: flex;
+    border:cadetblue solid 3px;
+    background: linear-gradient(#97c2ff, #a8f2ff);
+    height: 70%;
+}
+
+.ground {
+    border:chocolate solid 3px;
+    height:30%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    border:burlywood solid 3px;
+    height:10vh;
+}
+
+.cloud {
+    height: 128px;
+    opacity: 75%;
+    
+}
+
+.cat {
+    height: 100px;
+    /* align-self: flex-end; */
+}
