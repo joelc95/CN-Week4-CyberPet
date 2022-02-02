@@ -45,13 +45,16 @@ let spawnCatButton = document.getElementById("new-cat");
 let animalCount = 0;
 
 spawnCatButton.addEventListener("click", () => {
+    animalCount++;
     let catName = prompt("enter name: ")
     catName = new Cat(catName);
     console.log(catName);
     let newCat = document.createElement("img");
     newCat.setAttribute("src", "../Sprites/cat01Large.png");
-    newCat.setAttribute("z-index", animalCount--)
+    newCat.setAttribute("z-index", `-${animalCount}`)
     newCat.setAttribute("height", "100")
     newCat.setAttribute("style", "align-self: flex-end")
-    document.getElementById("skybox").appendChild(newCat);
+    newCat.setAttribute("id", catName.name)
+    document.getElementById("top-ground").appendChild(newCat);
+    
 })

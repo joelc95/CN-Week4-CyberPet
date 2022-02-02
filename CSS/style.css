@@ -60,9 +60,19 @@ body {
 
 .skybox {
     display: flex;
+    flex-direction: column;
     border:cadetblue solid 3px;
     background: linear-gradient(#97c2ff, #a8f2ff);
     height: 70%;
+}
+
+.clouds {
+    height: 50%;
+}
+
+.top-ground {
+    display: flex;
+    height: 50%;
 }
 
 .ground {
