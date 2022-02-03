@@ -1,5 +1,6 @@
 html {
     height: 100vh;
+    overflow: hidden;
 }
 body {
     padding: 0;
@@ -91,6 +92,7 @@ body {
 .cloud {
     height: 128px;
     opacity: 75%;
+    position: absolute;
     
 }
 

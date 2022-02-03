@@ -1,3 +1,4 @@
+// Animal blueprint
 class Animal {
     constructor(name) {
         this._name = name;
@@ -25,6 +26,7 @@ class Animal {
     }
 }
 
+// Cat blueprint
 class Cat extends Animal {
     constructor(name) {
         super(name);
@@ -38,20 +40,27 @@ class Cat extends Animal {
     }
 }
 
+// Cat likes
 let catFavs = ["fish", "milk", "chicken"];
 
+// Get reference to cat spawner button
 let spawnCatButton = document.getElementById("new-cat");
 
+// Keep track of animals created
 let animalCount = 0;
 
-
-
-
-
+// Add event on click of Cat spawner button
 spawnCatButton.addEventListener("click", () => {
     animalCount++;
+    makeNewCat();
+})
 
-    //Creates a new Cat object and insert img in html
+// Large function that creates a Cat object in memory,
+// randomly assigns a Cat Sprite and its Stats Tag,
+// creates a container for the cat and its tag,
+// then inserts the entire cat container into the HTML
+function makeNewCat() {
+        //Creates a new Cat object and insert img in html
     // NOTE: this could be put into its own function elsewhere...
     let newCat = prompt("enter name: ");
     newCat = new Cat(newCat);
@@ -100,13 +109,32 @@ spawnCatButton.addEventListener("click", () => {
     newCatSprite.setAttribute("id", newCat.name)
     newCatSprite.setAttribute("class", "cat")
 
-    // document.getElementById("top-ground").appendChild(newCatSprite);
-
     // Attach the sprite to its container
     newCatContainer.appendChild(newCatSprite);
 
     //Finally, attach the stats tag to the cat container
     newCatContainer.appendChild(catTag)
+}
+
+// TO DO: Make clouds move across screen (left to right)
+
+// Used animejs for convenient animations :)
+
+let smallCloudMove = anime({
+    targets: '#small-cloud',
+    translateX: [-200, window.innerWidth],
+    delay: 500,
+    easing: 'linear',
+    loop: true,
+    duration: 40000
 })
 
+let cloudMove = anime({
+    targets: '#big-cloud',
+    translateX: [-400, window.innerWidth],
+    delay: 500,
+    easing: 'linear',
+    loop: true,
+    duration: 70000
 
+})
