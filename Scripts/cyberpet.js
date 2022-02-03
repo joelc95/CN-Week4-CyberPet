@@ -60,6 +60,10 @@ let animalCount = 0;
 // Add event on click of Cat spawner button
 spawnCatButton.addEventListener("click", () => {
     animalCount++;
+    if (animalCount>15) {
+        alert("That's enough!");
+        return 1;
+    }
     makeNewCat();
 })
 
@@ -68,12 +72,18 @@ spawnCatButton.addEventListener("click", () => {
 // creates a container for the cat and its tag,
 // then inserts the entire cat container into the HTML
 function makeNewCat() {
-        //Creates a new Cat object and insert img in html
+    //Creates a new Cat object and insert img in html
     // NOTE: this could be put into its own function elsewhere...
     let newCat = prompt("enter name: ");
     if (!newCat) {
         // if no name given, do nothing and exit function
         return 1;
+    }
+    for(let i=0; i<cats.length; i++) {
+        if (newCat == cats[i].name){
+            alert("This name is taken!");
+            return 2;
+        }
     }
     newCat = new Cat(newCat);
     console.log(newCat);
@@ -139,6 +149,7 @@ function makeNewCat() {
 
 // Used animejs for convenient animations
 // REMOVED: GitHub preview does not like external sources!
+// All animations now made using CSS keyframes!
 
 // let smallCloudMove = anime({
 //     targets: '#small-cloud',
@@ -192,5 +203,21 @@ setInterval(()=>{
     }
 }, 1000)
 
+// TO DO: Have feed buttons decrease Cat Hunger Stat
+
+let giveFishButton = document.getElementById("give-fish");
+
+giveFishButton.addEventListener("click", () => {
+    cats.forEach(kitty => kitty._hunger-=25)
+})
+// TO DO: ditto for thirst
+
+let giveMilkButton = document.getElementById("give-milk");
+
+giveMilkButton.addEventListener("click", () => {
+    cats.forEach(kitty => {
+        kitty._thirst-=25;
+    })
+})
 
 
