@@ -138,6 +138,7 @@ function makeNewCat() {
 // TO DO: Make clouds move across screen (left to right) *****DONE :)*****
 
 // Used animejs for convenient animations
+// REMOVED: GitHub preview does not like external sources!
 
 // let smallCloudMove = anime({
 //     targets: '#small-cloud',
