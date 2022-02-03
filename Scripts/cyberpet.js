@@ -43,7 +43,7 @@ class Cat extends Animal {
 // Trying to use local DL files for animejs...
 // These don't work, idk why
 // import anime from 'animejs/lib/anime.es';
-// const anime = require('animejs');
+// import anime from '../node_modules/animejs/lib/anime.es';
 // import { default as anime } from '../node_modules/animejs/lib/anime.es.js';
 // Only solution so far is to link externally which means GitHub preview
 // blocks it ;_;
@@ -139,23 +139,23 @@ function makeNewCat() {
 
 // Used animejs for convenient animations
 
-let smallCloudMove = anime({
-    targets: '#small-cloud',
-    translateX: [-200, window.innerWidth],
-    delay: 500,
-    easing: 'linear',
-    loop: true,
-    duration: 40000
-})
+// let smallCloudMove = anime({
+//     targets: '#small-cloud',
+//     translateX: [-200, window.innerWidth],
+//     delay: 500,
+//     easing: 'linear',
+//     loop: true,
+//     duration: 40000
+// })
 
-let cloudMove = anime({
-    targets: '#big-cloud',
-    translateX: [-400, window.innerWidth],
-    delay: 500,
-    easing: 'linear',
-    loop: true,
-    duration: 70000
-})
+// let cloudMove = anime({
+//     targets: '#big-cloud',
+//     translateX: [-400, window.innerWidth],
+//     delay: 500,
+//     easing: 'linear',
+//     loop: true,
+//     duration: 70000
+// })
 
 // TO DO: have Cat Stats change over time ****DONE :)*****
 

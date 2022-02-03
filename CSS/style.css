@@ -145,3 +145,22 @@ body {
 /* .cat-container:hover {
     position: absolute;
 } */
+
+#small-cloud {
+    animation-duration: 40s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#big-cloud {
+    animation-duration: 60s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moveCloud {
+    from {margin-left:-30%}
+    to {margin-left:100%;}
+}
