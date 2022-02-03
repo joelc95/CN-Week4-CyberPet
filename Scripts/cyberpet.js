@@ -40,6 +40,14 @@ class Cat extends Animal {
     }
 }
 
+// Trying to use local DL files for animejs...
+// These don't work, idk why
+// import anime from 'animejs/lib/anime.es';
+// const anime = require('animejs');
+// import { default as anime } from '../node_modules/animejs/lib/anime.es.js';
+// Only solution so far is to link externally which means GitHub preview
+// blocks it ;_;
+
 // Cat likes
 let catFavs = ["fish", "milk", "chicken"];
 
