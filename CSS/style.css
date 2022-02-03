@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
 html {
     height: 100vh;
     overflow: hidden;
 }
 body {
+    font-family: 'Dongle', sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -62,7 +65,7 @@ body {
 .skybox {
     display: flex;
     flex-direction: column;
-    border:cadetblue solid 3px;
+    /* border:cadetblue solid 3px; */
     background: linear-gradient(#97c2ff, #a8f2ff);
     height: 70%;
     
@@ -91,9 +94,16 @@ body {
 
 .cloud {
     height: 128px;
-    opacity: 75%;
+    opacity: 85%;
     position: absolute;
-    
+}
+
+#small-cloud {
+    z-index: 2;
+}
+
+#big-cloud {
+    opacity: 70%;
 }
 
 .cat {
@@ -103,12 +113,15 @@ body {
 }
 
 .cat-container {
+    position: relative;
     display: flex;
     
 }
 
 .cat-tag {
     display: none;
+    position: absolute;
+    transform: translate(10px, -30px);
     flex-direction: column;
     list-style: none;
     text-align: center;
@@ -118,15 +131,17 @@ body {
     z-index: 30;
     height:fit-content;
     border-radius: 4px;
+    font-weight: 300;
 }
 
 .cat:hover + .cat-tag {
     display: inline;
-    padding:0;
-    transform: translate(-80px, -70px);
+    /* position: relative; */
+    padding:5px;
+    /* transform: translate(-80px, -70px); */
 }
 
 
-.cat-container:hover {
-    width: 100px;
-}
+/* .cat-container:hover {
+    position: absolute;
+} */

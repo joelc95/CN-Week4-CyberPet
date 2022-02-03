@@ -2,8 +2,8 @@
 class Animal {
     constructor(name) {
         this._name = name;
-        this._hunger = 100;
-        this._thirst = 100;
+        this._hunger = 50;
+        this._thirst = 50;
         this._mood = "OK!";
     }
     get name() {
@@ -63,6 +63,10 @@ function makeNewCat() {
         //Creates a new Cat object and insert img in html
     // NOTE: this could be put into its own function elsewhere...
     let newCat = prompt("enter name: ");
+    if (!newCat) {
+        // if no name given, do nothing and exit function
+        return 1;
+    }
     newCat = new Cat(newCat);
     console.log(newCat);
 
@@ -81,16 +85,20 @@ function makeNewCat() {
     // Create an element that can hold text
     let catTag = document.createElement("ul");
     catTag.setAttribute("class", "cat-tag");
+    catTag.setAttribute("id", `${newCat.name}-tag`)
     
     // catTag.setAttribute("style", "flex-direction: column")
     // let catHunger = document.createTextNode(`Hunger: ${newCat.hunger}\nName: ${newCat.name}`)
     let catHunger = document.createElement("li");
+    catHunger.setAttribute("id", `${newCat.name}-hunger-tag`);
     catHunger.innerHTML = `Hunger: ${newCat.hunger}`;
     let catName = document.createElement("li");
     catName.innerHTML = `${newCat.name}`;
     let catThirst = document.createElement("li");
+    catThirst.setAttribute("id", `${newCat.name}-thirst-tag`);
     catThirst.innerHTML = `Thirst: ${newCat.thirst}`;
     let catMood = document.createElement("li");
+    catMood.setAttribute("id", `${newCat.name}-mood-tag`);
     catMood.innerHTML = `Mood: ${newCat.mood}`;
 
     // Attach the text to the element
@@ -114,11 +122,14 @@ function makeNewCat() {
 
     //Finally, attach the stats tag to the cat container
     newCatContainer.appendChild(catTag)
+    // Also need to add our new Cat Object to a CATalogue HA HA
+    cats.push(newCat);
+
 }
 
-// TO DO: Make clouds move across screen (left to right)
+// TO DO: Make clouds move across screen (left to right) *****DONE :)*****
 
-// Used animejs for convenient animations :)
+// Used animejs for convenient animations
 
 let smallCloudMove = anime({
     targets: '#small-cloud',
@@ -136,5 +147,41 @@ let cloudMove = anime({
     easing: 'linear',
     loop: true,
     duration: 70000
-
 })
+
+// TO DO: have Cat Stats change over time ****DONE :)*****
+
+// Firstly, we need a catalogue of all Cat objects
+// We can push our new cat objects into here on creation
+let cats = [];
+
+
+// This thing (for lack of better term), will update the Cat Stats over time!!!!!
+setInterval(()=>{
+    for(let i=0; i<cats.length; i++) {
+        // Change object value
+        let moodTag = document.getElementById(`${cats[i].name}-mood-tag`);
+        if (cats[i]._hunger == 100) {
+            cats[i]._hunger=100;
+        }else{
+            cats[i]._hunger+=1;
+        }
+        if (cats[i]._thirst == 100) {
+            cats[i]._thirst=100;
+        } else {
+            cats[i]._thirst+=1;
+        }
+
+        if (cats[i]._hunger==100 || cats[i]._thirst==100) {
+            moodTag.innerHTML = 'Mood: Not Good!!'
+        }
+        // Change text in tag
+        let hungerTag = document.getElementById(`${cats[i].name}-hunger-tag`);
+        let thirstTag = document.getElementById(`${cats[i].name}-thirst-tag`);
+        hungerTag.innerHTML = `Hunger: ${cats[i]._hunger}`;
+        thirstTag.innerHTML = `Thirst: ${cats[i]._thirst}`;
+    }
+}, 1000)
+
+
+
