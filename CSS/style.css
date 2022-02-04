@@ -68,7 +68,7 @@ body {
     display: flex;
     flex-direction: column;
     /* border:cadetblue solid 3px; */
-    background: linear-gradient(#97c2ff, #a8f2ff);
+    background: linear-gradient(#69a8ff, #a8f2ff);
     height: 70%;
     
 }
@@ -100,12 +100,27 @@ body {
     position: absolute;
 }
 
-#small-cloud {
-    z-index: 2;
+#small-cloud1 {
+    z-index: 5;
+
+}
+
+#small-cloud2 {
+    z-index: 3;
+    opacity: 82%;
+    transform: translate(50px, 50px);
 }
 
 #big-cloud {
     opacity: 70%;
+    z-index: 2;
+}
+
+#bigger-cloud {
+    opacity: 60%;
+    scale: 1.2;
+    transform: translate(0, 30px);
+    
 }
 
 .cat {
@@ -123,7 +138,7 @@ body {
 .cat-tag {
     display: none;
     position: absolute;
-    transform: translate(10px, -30px);
+    transform: translate(10px, -80px);
     flex-direction: column;
     list-style: none;
     text-align: center;
@@ -132,8 +147,10 @@ body {
     color: white;
     z-index: 30;
     height:fit-content;
+    width:fit-content;
     border-radius: 4px;
     font-weight: 300;
+    font-size: 20px;
 }
 
 .cat:hover + .cat-tag {
@@ -143,26 +160,44 @@ body {
     /* transform: translate(-80px, -70px); */
 }
 
+.cat:hover {
+    filter: brightness(105%);
+}
+
 
 /* .cat-container:hover {
     position: absolute;
 } */
 
-#small-cloud {
-    animation-duration: 40s;
+#small-cloud1 {
+    animation-duration: 70s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#small-cloud2 {
+    animation-duration: 110s;
     animation-name: moveCloud;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 #big-cloud {
-    animation-duration: 60s;
+    animation-duration: 130s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#bigger-cloud {
+    animation-duration: 180s;
     animation-name: moveCloud;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 @keyframes moveCloud {
-    from {margin-left:-30%}
+    from {margin-left:-20%}
     to {margin-left:100%;}
 }

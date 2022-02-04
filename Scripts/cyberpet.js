@@ -18,6 +18,9 @@ class Animal {
     get mood() {
         return this._mood;
     }
+    get element() {
+        return this._element;
+    }
     eat() {
         this._hunger--;
     }
@@ -49,10 +52,23 @@ class Cat extends Animal {
 // blocks it ;_;
 
 // Cat likes
+
+// We can keep our cat Objects here
+let cats = [];
+
+// Cat img elements
+let catElements = [];
+
+// unused
 let catFavs = ["fish", "milk", "chicken"];
 
 // Get reference to cat spawner button
 let spawnCatButton = document.getElementById("new-cat");
+
+// Keep our sprite "pairs" together
+let sprites = [['../Sprites/cat01Large.png', '../Sprites/cat01MADLarge.png'],
+                ['../Sprites/cat02Large.png', '../Sprites/cat02MADLarge.png'],
+                ['../Sprites/cat03Large.png', '../Sprites/cat03MADLarge.png']]
 
 // Keep track of animals created
 let animalCount = 0;
@@ -86,13 +102,14 @@ function makeNewCat() {
         }
     }
     newCat = new Cat(newCat);
-    console.log(newCat);
+    // console.log(newCat);
 
     // Create new container for cat and its tags; set its id and class
     let newCatContainer = document.createElement("div");
     newCatContainer.setAttribute("class", "cat-container");
     newCatContainer.setAttribute("id", `${newCat.name}-container`);
     newCatContainer.setAttribute("style", `z-index: ${animalCount}`);
+    
 
     // Append the container to the top ground div
     document.getElementById("top-ground").appendChild(newCatContainer);
@@ -104,6 +121,7 @@ function makeNewCat() {
     let catTag = document.createElement("ul");
     catTag.setAttribute("class", "cat-tag");
     catTag.setAttribute("id", `${newCat.name}-tag`)
+
     
     // catTag.setAttribute("style", "flex-direction: column")
     // let catHunger = document.createTextNode(`Hunger: ${newCat.hunger}\nName: ${newCat.name}`)
@@ -126,14 +144,16 @@ function makeNewCat() {
     catTag.appendChild(catMood);
 
     // Randomise which cat color
-    let random3 = 1 + Math.floor(Math.random()*3);
+    let random3 = Math.floor(Math.random()*3);
     
     // Set variables that cannot be set in CSS afterwards
-    newCatSprite.setAttribute("src", `../Sprites/cat0${random3}Large.png`);
+    newCatSprite.setAttribute("src", sprites[random3][0]);
     console.log(random3)
     newCatSprite.setAttribute("style", `z-index: ${animalCount}`)
     newCatSprite.setAttribute("id", newCat.name)
-    newCatSprite.setAttribute("class", "cat")
+    // newCatSprite.setAttribute("class", "cat")
+    newCatSprite.className = "cat";
+    newCatSprite.setAttribute("value", 0)
 
     // Attach the sprite to its container
     newCatContainer.appendChild(newCatSprite);
@@ -143,7 +163,96 @@ function makeNewCat() {
     // Also need to add our new Cat Object to a CATalogue HA HA
     cats.push(newCat);
 
+    catElements.push([newCatSprite, random3]);
+    console.log(catElements);
+    console.log(sprites)
 }
+// let catSprite;
+// This checks hunger and thirst levels
+// and updates mood accordingly
+function moodCheck() {
+    for (let i=0; i<cats.length; i++) {
+        let moodTag = document.getElementById(`${cats[i].name}-mood-tag`);
+        let catSprite = document.getElementById(`${cats[i].name}`);
+        // Change mood on either max value
+        // This should change both the value inside the object...
+        // ...AND the text displayed in the Cat Tag HTML element
+        if (cats[i]._hunger==100 || cats[i]._thirst==100) {
+            cats[i]._mood = 'Not Good!!';
+            moodTag.innerHTML = 'Mood: Not Good!!';
+            catSprite.setAttribute('value', 1);
+        } else {
+            cats[i]._mood = 'OK!';
+            moodTag.innerHTML = 'Mood: OK!';
+            catSprite.setAttribute('value', 0);
+        }
+
+        
+        // Change text in tag
+        let hungerTag = document.getElementById(`${cats[i].name}-hunger-tag`);
+        let thirstTag = document.getElementById(`${cats[i].name}-thirst-tag`);
+        hungerTag.innerHTML = `Hunger: ${cats[i]._hunger}`;
+        thirstTag.innerHTML = `Thirst: ${cats[i]._thirst}`;
+    }
+}
+
+// If the mood is "Not Good!!", change to angry sprite
+// else neutral sprite
+function setSprite() {
+    for (let i=0; i<catElements.length; i++) {
+        if(catElements[i][0].getAttribute('value') == 0) {
+            catElements[i][0].setAttribute("src", sprites[catElements[i][1]][0]);
+        } else if (catElements[i][0].getAttribute('value') == 1) {
+            catElements[i][0].setAttribute("src", sprites[catElements[i][1]][1]);
+        }
+    }
+}
+
+// Checks mood and sprite every half a second
+setInterval(()=>{
+    moodCheck();
+    setSprite();
+}, 500);
+
+
+// TO DO: have Cat Stats change over time ****DONE :)*****
+
+// This ticks up hunger and thirst meters
+function increaseNeeds() {
+    
+    for(let i=0; i<cats.length; i++) {
+        // Lock max and min hunger
+        if (cats[i]._hunger == 100) {
+            cats[i]._hunger=100;
+
+        } else if (cats[i]._hunger<0) {
+            cats[i]._hunger=0;
+
+        } else {
+            cats[i]._hunger+=1;
+        }
+
+        //Lock max and min thirst
+        if (cats[i]._thirst == 100) {
+            cats[i]._thirst=100;
+
+        } else if (cats[i]._thirst<0) {
+            cats[i]._thirst=0;
+
+        } else {
+            cats[i]._thirst+=1;
+        }
+
+    }
+}
+// Here we can adjust how quickly they tick
+setInterval(()=>{
+    increaseNeeds();
+}, 1000)
+
+
+
+
 
 // TO DO: Make clouds move across screen (left to right) *****DONE :)*****
 
@@ -169,46 +278,14 @@ function makeNewCat() {
 //     duration: 70000
 // })
 
-// TO DO: have Cat Stats change over time ****DONE :)*****
-
-// Firstly, we need a catalogue of all Cat objects
-// We can push our new cat objects into here on creation
-let cats = [];
-
-
-// This thing (for lack of better term), will update the Cat Stats over time!!!!!
-setInterval(()=>{
-    for(let i=0; i<cats.length; i++) {
-        // Change object value
-        let moodTag = document.getElementById(`${cats[i].name}-mood-tag`);
-        if (cats[i]._hunger == 100) {
-            cats[i]._hunger=100;
-        }else{
-            cats[i]._hunger+=1;
-        }
-        if (cats[i]._thirst == 100) {
-            cats[i]._thirst=100;
-        } else {
-            cats[i]._thirst+=1;
-        }
-
-        if (cats[i]._hunger==100 || cats[i]._thirst==100) {
-            moodTag.innerHTML = 'Mood: Not Good!!'
-        }
-        // Change text in tag
-        let hungerTag = document.getElementById(`${cats[i].name}-hunger-tag`);
-        let thirstTag = document.getElementById(`${cats[i].name}-thirst-tag`);
-        hungerTag.innerHTML = `Hunger: ${cats[i]._hunger}`;
-        thirstTag.innerHTML = `Thirst: ${cats[i]._thirst}`;
-    }
-}, 1000)
-
 // TO DO: Have feed buttons decrease Cat Hunger Stat
 
 let giveFishButton = document.getElementById("give-fish");
 
 giveFishButton.addEventListener("click", () => {
-    cats.forEach(kitty => kitty._hunger-=25)
+    cats.forEach(kitty => {
+        kitty._hunger-=25;
+    })
 })
 // TO DO: ditto for thirst
 
@@ -219,5 +296,3 @@ giveMilkButton.addEventListener("click", () => {
         kitty._thirst-=25;
     })
 })
-
-
