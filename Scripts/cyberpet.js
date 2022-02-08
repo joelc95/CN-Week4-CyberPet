@@ -251,9 +251,6 @@ setInterval(()=>{
 }, 1000)
 
 
-
-
-
 // TO DO: Make clouds move across screen (left to right) *****DONE :)*****
 
 // Used animejs for convenient animations
@@ -296,3 +293,51 @@ giveMilkButton.addEventListener("click", () => {
         kitty._thirst-=25;
     })
 })
+
+// TO DO: Make draggable fish!
+// Drag fish from toolbar to cat to feed it!
+
+// dragElement(document.getElementById("give-fish"));
+// dragElement(document.getElementById("give-milk"))
+
+// function dragElement(el) {
+//     var pos1, pos2, pos3, pos4 = 5;
+//     if (document.getElementById(el.id + "-drag")) {
+//         document.getElementById(el.id + "-drag").onmousedown = dragMouseDown;
+//     } else {
+//         elmnt.onmousedown = dragMouseDown;
+//     }
+
+//     function dragMouseDown(e) {
+//         e = e || window.event;
+//         e.preventDefault();
+//         pos3 = e.clientX;
+//         pos4 = e.clientY;
+//         for (let i=0; i<catElements.length; i++) {
+//             if (pos3 == catElements[i].clientX) {
+//                 console.log("cat fed");
+//                 document.onmouseup = closeDragElement;
+//             }
+//         }
+//         document.onmouseup = closeDragElement;
+//         document.onmousemove = elementDrag;
+//     }
+
+//     function elementDrag(e) {
+//         e = e || window.event;
+//         e.preventDefault();
+
+//         pos1 = pos3-e.clientX;
+//         pos2 = pos4-e.clientY;
+//         pos3 = e.clientX;
+//         pos4 = e.clientY;
+
+//         el.style.top = (el.offsetTop - pos2) + "px";
+//         el.style.left = (el.offsetLeft - pos1) + "px";
+//     }
+
+//     function closeDragElement() {
+//         document.mouseup = null;
+//         document.onmousemove = null;
+//     }
+// }

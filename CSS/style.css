@@ -17,44 +17,55 @@ body {
     height: 10vh;
 }
 
-
-
 .toolbar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border: pink solid 3px;
     height: 10vh;
 }
 
-.tool-buttons {
-    border: blue solid 3px;
+.toolbar p {
+    margin: 0;
+}
+
+.tool-buttons-container {
     height: 100%;
     width: 100%;
-    display: flex;
     background-color: cornflowerblue;
 }
 
-.tool-buttons ul {
-    border:coral solid 3px;
+.tool-buttons {
     display: flex;
-    list-style: none;
-    padding:0;
+    flex-direction: row;
+    height:100%;
+    color: white;
 }
 
-.tool-buttons li {
-    padding-left: 1rem;
-    margin-right: 2rem;
-    margin-left: 2rem;
-    padding-right: 1rem;
-    background-color: crimson;
+.tool-button {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.tool-buttons li:hover {
-    background-color: rgb(146, 11, 38);
+.toolbar-option {
+    height: fit-content;
+    font-size: 50px;
     cursor: pointer;
 }
 
+#new-cat:hover {
+    background-color: rgba(223, 223, 223, 0.151);
+    color: rgb(255, 255, 255)
+}
+
+#give-fish:hover {
+    background-color: rgba(223, 223, 223, 0.151);
+    color: rgb(255, 255, 255)
+}
+
+#give-milk:hover {
+    background-color: rgba(223, 223, 223, 0.151);
+    color: rgb(255, 255, 255)
+}
 
 
 .middle {
@@ -69,29 +80,11 @@ body {
     flex-direction: column;
     /* border:cadetblue solid 3px; */
     background: linear-gradient(#69a8ff, #a8f2ff);
-    height: 70%;
-    
+    height: 75%;
 }
 
 .clouds {
     height: 50%;
-}
-
-.top-ground {
-    display: flex;
-    height: 50%;
-}
-
-.ground {
-    border:chocolate solid 3px;
-    height:30%;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    border:burlywood solid 3px;
-    height:10vh;
 }
 
 .cloud {
@@ -102,25 +95,90 @@ body {
 
 #small-cloud1 {
     z-index: 5;
-
+    animation-duration: 70s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 #small-cloud2 {
+    animation-duration: 110s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     z-index: 3;
     opacity: 82%;
     transform: translate(50px, 50px);
 }
 
 #big-cloud {
+    animation-duration: 130s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     opacity: 70%;
     z-index: 2;
 }
 
 #bigger-cloud {
+    animation-duration: 180s;
+    animation-name: moveCloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     opacity: 60%;
     scale: 1.2;
     transform: translate(0, 30px);
+}
+
+@keyframes moveCloud {
+    from {margin-left:-20%}
+    to {margin-left:100%;}
+}
+
+.top-ground {
+    display: flex;
+    height: 50%;
+}
+
+.ground {
     
+    height:128px;
+}
+
+.grass-container {
+    height: 50%;
+    background-image:url('../Sprites/grassLarge.png');
+}
+
+.dirt-container {
+    height: 50%;
+    background-image: url('../Sprites/dirtLarge.png');
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:0;
+    height:12vh;
+    margin:0;
+    color: white;
+    font-size: 30px;
+    background-image: url('../Sprites/dirtLarge.png');
+    filter:brightness(80%)
+}
+
+.footer-info {
+    margin: 0;
+}
+
+.github {
+    text-decoration: none;
+    color: white;
+}
+
+.github:hover{
+    color: pink;
 }
 
 .cat {
@@ -132,7 +190,6 @@ body {
 .cat-container {
     position: relative;
     display: flex;
-    
 }
 
 .cat-tag {
@@ -162,42 +219,4 @@ body {
 
 .cat:hover {
     filter: brightness(105%);
-}
-
-
-/* .cat-container:hover {
-    position: absolute;
-} */
-
-#small-cloud1 {
-    animation-duration: 70s;
-    animation-name: moveCloud;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#small-cloud2 {
-    animation-duration: 110s;
-    animation-name: moveCloud;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#big-cloud {
-    animation-duration: 130s;
-    animation-name: moveCloud;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#bigger-cloud {
-    animation-duration: 180s;
-    animation-name: moveCloud;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes moveCloud {
-    from {margin-left:-20%}
-    to {margin-left:100%;}
 }

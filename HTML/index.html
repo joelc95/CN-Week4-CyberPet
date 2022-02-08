@@ -16,12 +16,18 @@
 
     <div class="toolbar">
         <!-- toys and food go here -->
-        <div class="tool-buttons">
-            <ul>
-                <li id="new-cat">New Cat</li>
-                <li id="give-fish">Give Fish</li>
-                <li id="give-milk">Give Milk</li>
-            </ul>
+        <div class="tool-buttons-container">
+            <div class="tool-buttons" id="tool-buttons">
+                <div class="tool-button" id="new-cat">
+                    <p class="toolbar-option" >New Cat</p>
+                </div>
+                <div class="tool-button" id="give-fish">
+                    <p class="drag-item toolbar-option" id="give-fish-drag">Fish</p>
+                </div>
+                <div class="tool-button" id="give-milk">
+                    <p class="drag-item toolbar-option" id="give-milk-drag">Milk</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -42,11 +48,18 @@
         <!-- <div class="animal">
             <img class="cat" id="grey" src="../Sprites/cat01Large.png">
         </div> -->
-        <div class="ground"></div>
+        <div class="ground">
+            <div class="grass-container">
+                <!-- <img class="grass" src="../Sprites/grassLarge.png"> -->
+            </div>
+            <div class="dirt-container">
+                <!-- <img class="dirt" src="../Sprites/dirtLarge.png"> -->
+            </div>
+        </div>
     </div>
     
     <div class="footer">
-        footer and misc links go here
+        <h3 class="footer-info">Sprites and code by Joel :^) | <a class="github" href="https://github.com/joelc95">GitHub</a></h3>
     </div>
 </body>
 </html>
